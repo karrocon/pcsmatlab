@@ -9,12 +9,12 @@
 - [Using the Library](#using-the-library)
 - [API Reference](#api-reference)
 
-## <span id="introduction"/>Introduction
+## Introduction
 This manual describes the use of Matlab-based simulation library PCS, which facilitates development of process control loops in networked and/or event-based environments.
 
 Several tutorial examples are provided.
 
-## <span id="getting-started"/>Getting Started
+## Getting Started
 
 Download the zip archive from [PCS for MATLAB homepage](https://github.com/crcuned/pcsmatlab). Then
 
@@ -25,7 +25,7 @@ Download the zip archive from [PCS for MATLAB homepage](https://github.com/crcun
 ## Using the Library
 Under development.
 
-## <span id="api-reference"/>API Reference
+## API Reference
 The API reference is organized by packages.
 
 | Package                       | Description                                                                                                  |
@@ -37,7 +37,7 @@ The API reference is organized by packages.
 | [PCS.Process](#pcsprocess)   | Provides the base process definition and some of the well-known industrial processes.                        |
 | [PCS.Utils](#pcsutils)       | Provides static classes with useful reusable functions to simplify the simulation of the closed-loop system. |
 
-### <span id="pcs"/>PCS
+### PCS
 Provides the core classes necessary to perform a process control simulation and the base system definition.
 
 #### Class Summary
@@ -46,10 +46,10 @@ Provides the core classes necessary to perform a process control simulation and 
 | [Simulation](#simulation) | The *Simulation* class contains the core functionality of the library that allows to perform process control simulations. |
 | [System](#system) | An abstract class which provides a common definition for processes and controllers.                                                 |
 
-##### <span id="simulation"/>Class Simulation (PCS)
+##### Class Simulation (PCS)
 The *Simulation* class contains the core functionality of the library that allows to perform process control simulations.
 
-##### <span id="system"/>Class System (PCS)
+##### Class System (PCS)
 [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
 An abstract class which provides a common definition for processes and controllers.
@@ -67,7 +67,7 @@ An abstract class which provides a common definition for processes and controlle
 | Abstract | [varargout](https://es.mathworks.com/help/matlab/ref/varargout.html) = derivatives(t, [varargin](https://es.mathworks.com/help/matlab/ref/varargin.html)) | Computes the derivatives of the states of the system. |
 | Abstract | [varargout](https://es.mathworks.com/help/matlab/ref/varargout.html) = outputs(t, [varargin](https://es.mathworks.com/help/matlab/ref/varargin.html)) | Computes the outputs of the system. |
 
-### <span id="pcs-control"/>PCS.Control
+### PCS.Control
 Provides the base controller definition and some of the well-known control laws.
 
 #### Class Summary
@@ -89,7 +89,7 @@ An abstract class which provides a general definition for controllers.
 | Abstract | dxcdt = derivatives(t, xc, x, y, d, r) | Computes the derivatives of the states of the controller. |
 | Abstract | u = outputs(t, xc, x, y, d, r) | Computes the control signals. |
 
-### <span id="pcs-hardware"/>PCS.Hardware
+### PCS.Hardware
 Provides classes for emulating physical interaction with real processes.
 
 #### Class Summary
@@ -99,7 +99,7 @@ Provides classes for emulating physical interaction with real processes.
 | [Device](#device) | An abstract class which provides a general definition for an electronic device. |
 | [Sensor](#sensor) | This class represents a physical sensor that is continuously connected to some process state or output, or to a disturbance. |
 
-##### <span id="actuator"/>Class Actuator ([PCS.Hardware](#pcshardware))
+##### Class Actuator ([PCS.Hardware](#pcshardware))
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
 	- [PCS.Hardware.Device](#device)
@@ -124,7 +124,7 @@ This class represents a physical actuator that is continuously connected to some
 |:------ |:----------- |
 | output = write(input) | Uses this actuator to write a (possibly constrained) control signal. |
 
-##### <span id="device"/>Class Device ([PCS.Hardware](#pcshardware))
+##### Class Device ([PCS.Hardware](#pcshardware))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
@@ -135,7 +135,7 @@ An abstract class which provides a general definition for an electronic device.
 |:-------- |:-------- |:----------- |
 | None | device_id | The identifier of the physical device. |
 
-##### <span id="sensor"/>Class Sensor ([PCS.Hardware](#pcshardware))
+##### Class Sensor ([PCS.Hardware](#pcshardware))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [PCS.Hardware.Device](#device)
@@ -159,7 +159,7 @@ This class represents a physical sensor that is continuously connected to some p
 |:------ |:----------- |
 | output = read(input) | Uses this sensor to read a (possibly constrained) state, output or disturbance. |
 
-### <span id="pcs-network"/>PCS.Network
+### PCS.Network
 Provides classes for establishing a networked communication between control loop components.
 
 #### Class Summary
@@ -169,7 +169,7 @@ Provides classes for establishing a networked communication between control loop
 | [Link](#link) | An abstract class which provides a general definition for network links. |
 | [SensorLink](#sensor-link) | The *SensorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the process and the controller. |
 
-##### <span id="actuator-link"/>Class ActuatorLink ([PCS.Network](#pcsnetwork))
+##### Class ActuatorLink ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [Link](#link)
@@ -191,7 +191,7 @@ The *ActuatorLink* class provides a general implementation for continuous-time, 
 |:-------- |:------ |:----------- |
 | None | u_sent = send(t, u) | Transmits some control signals through this link. |
 
-##### <span id="link"/>Class Link ([PCS.Network](#pcsnetwork))
+##### Class Link ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
@@ -210,7 +210,7 @@ An abstract class which provides a general definition for network links.
 |:-------- |:------ |:----------- |
 | None | [varargout](https://es.mathworks.com/help/matlab/ref/varargout.html) = send([varargin](https://es.mathworks.com/help/matlab/ref/varargin.html)) | Transmits some signals through this link. |
 
-##### <span id="sensor-link"/>Class SensorLink ([PCS.Network](#pcsnetwork))
+##### Class SensorLink ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [Link](#link)
@@ -234,7 +234,7 @@ The *SensorLink* class provides a general implementation for continuous-time, di
 |:-------- |:------ |:----------- |
 | None | [x\_sent, y\_sent, d\_sent] = send(t, x, y, d) | Transmits some disturbances, outputs and states through this link. |
 
-### <span id="pcs-process"/>PCS.Process
+### PCS.Process
 Provides the base process definition and some of the well-known industrial processes.
 
 #### Class Summary
@@ -242,7 +242,7 @@ Provides the base process definition and some of the well-known industrial proce
 |:---------- |:----------- |
 | [Process](#process) | An abstract class which provides a general definition for processes. |
 
-##### <span id="process"/>Class Process ([PCS.Process](#pcsprocess))
+##### Class Process ([PCS.Process](#pcsprocess))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [System](#system)
@@ -261,7 +261,7 @@ An abstract class which provides a general definition for processes.
 | Abstract | dxdt = derivatives(t, x, u, d) | Computes the derivatives of the states of the process. |
 | Abstract | y = outputs(t, x, u, d) | Computes the outputs of the process. |
 
-### <span id="pcs-utils"/>PCS.Utils
+### PCS.Utils
 Provides static classes with useful reusable functions to simplify the simulation of the closed-loop system.
 
 #### Class Summary
@@ -269,7 +269,7 @@ Provides static classes with useful reusable functions to simplify the simulatio
 |:---------- |:----------- |
 | Utils | Class for static utilities. |
 
-##### <span id="utils"/>Class Utils ([PCS.Utils](#pcsutils)]
+##### Class Utils ([PCS.Utils](#pcsutils)]
 
 ###### Methods Summary
 | Modifier | Method | Description |
