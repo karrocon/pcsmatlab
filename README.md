@@ -43,8 +43,8 @@ Provides the core classes necessary to perform a process control simulation and 
 #### Class Summary
 | Class      | Description |
 |:---------- |:----------- |
-| [Simulation](#simulation) | The *Simulation* class contains the core functionality of the library that allows to perform process control simulations. |
-| [System](#system) | An abstract class which provides a common definition for processes and controllers.                                                 |
+| [Simulation](#class-simulation-pcs) | The *Simulation* class contains the core functionality of the library that allows to perform process control simulations. |
+| [System](#class-system-pcs) | An abstract class which provides a common definition for processes and controllers.                                                 |
 
 ##### Class Simulation (PCS)
 The *Simulation* class contains the core functionality of the library that allows to perform process control simulations.
@@ -73,12 +73,12 @@ Provides the base controller definition and some of the well-known control laws.
 #### Class Summary
 | Class      | Description |
 |:---------- |:----------- |
-| [Controller](#controller) | An abstract class which provides a general definition for controllers. |
+| [Controller](#class-controller-pcscontrol) | An abstract class which provides a general definition for controllers. |
 
 ##### Class Controller ([PCS.Control](#pcscontrol))
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
-	- [PCS.System](#system)
+	- [PCS.System](#class-system-pcs)
 
 An abstract class which provides a general definition for controllers.
 
@@ -95,14 +95,14 @@ Provides classes for emulating physical interaction with real processes.
 #### Class Summary
 | Class      | Description |
 |:---------- |:----------- |
-| [Actuator](#actuator) | This class represents a physical actuator that is continuously connected to some process input. |
-| [Device](#device) | An abstract class which provides a general definition for an electronic device. |
-| [Sensor](#sensor) | This class represents a physical sensor that is continuously connected to some process state or output, or to a disturbance. |
+| [Actuator](#class-actuator-pcshardware) | This class represents a physical actuator that is continuously connected to some process input. |
+| [Device](#class-device-pcshardware) | An abstract class which provides a general definition for an electronic device. |
+| [Sensor](#class-sensor-pcshardware) | This class represents a physical sensor that is continuously connected to some process state or output, or to a disturbance. |
 
 ##### Class Actuator ([PCS.Hardware](#pcshardware))
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
-	- [PCS.Hardware.Device](#device)
+	- [PCS.Hardware.Device](#class-device-pcshardware)
 
 This class represents a physical actuator that is continuously connected to some process input.
 
@@ -138,7 +138,7 @@ An abstract class which provides a general definition for an electronic device.
 ##### Class Sensor ([PCS.Hardware](#pcshardware))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
-	- [PCS.Hardware.Device](#device)
+	- [PCS.Hardware.Device](#class-device-pcshardware)
 
 This class represents a physical sensor that is continuously connected to some process state or output, or to a disturbance.
 
@@ -165,14 +165,14 @@ Provides classes for establishing a networked communication between control loop
 #### Class Summary
 | Class      | Description |
 |:---------- |:----------- |
-| [ActuatorLink](#actuator-link) | The *ActuatorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the controller and the process. |
-| [Link](#link) | An abstract class which provides a general definition for network links. |
-| [SensorLink](#sensor-link) | The *SensorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the process and the controller. |
+| [ActuatorLink](#class-actuatorlink-pcsnetwork) | The *ActuatorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the controller and the process. |
+| [Link](#class-link-pcsnetwork) | An abstract class which provides a general definition for network links. |
+| [SensorLink](#class-sensorlink-pcsnetwork) | The *SensorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the process and the controller. |
 
 ##### Class ActuatorLink ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
-	- [Link](#link)
+	- [Link](#class-link-pcsnetwork)
 
 The *ActuatorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the controller and the process.
 
@@ -213,7 +213,7 @@ An abstract class which provides a general definition for network links.
 ##### Class SensorLink ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
-	- [Link](#link)
+	- [Link](#class-link-pcsnetwork)
 
 The *SensorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the process and the controller.
 
@@ -240,12 +240,12 @@ Provides the base process definition and some of the well-known industrial proce
 #### Class Summary
 | Class      | Description |
 |:---------- |:----------- |
-| [Process](#process) | An abstract class which provides a general definition for processes. |
+| [Process](#class-process-pcsprocess) | An abstract class which provides a general definition for processes. |
 
 ##### Class Process ([PCS.Process](#pcsprocess))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
-	- [System](#system)
+	- [System](#class-system-pcs)
 
 An abstract class which provides a general definition for processes.
 
@@ -267,7 +267,7 @@ Provides static classes with useful reusable functions to simplify the simulatio
 #### Class Summary
 | Class      | Description |
 |:---------- |:----------- |
-| Utils | Class for static utilities. |
+| [Utils](#class-utils-pcsutils) | Class for static utilities. |
 
 ##### Class Utils ([PCS.Utils](#pcsutils)]
 
