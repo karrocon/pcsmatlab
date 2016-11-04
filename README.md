@@ -6,8 +6,7 @@
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
-- [Using the Library](#using-library)
-- [Extending Code](#extending-code)
+- [Using the Library](#using-the-library)
 - [API Reference](#api-reference)
 
 ## <span id="introduction"/>Introduction
@@ -23,7 +22,8 @@ Download the zip archive from [PCS for MATLAB homepage](https://github.com/crcun
 2. Start MATLAB R2014a or higher and navigate to previous directory.
 3. Run *install.m* to add the necessary directories to the MATLAB path.
 
-## Extending code
+## Using the Library
+Under development.
 
 ## <span id="api-reference"/>API Reference
 The API reference is organized by packages.
@@ -31,7 +31,7 @@ The API reference is organized by packages.
 | Package                       | Description                                                                                                  |
 |:----------------------------- |:------------------------------------------------------------------------------------------------------------ |
 | [PCS](#pcs)                   | Provides the core classes necessary to perform a process control simulation and the base system definition.  |
-| [PCS.Control](#pcs-control)   | Provides the base controller definition and some of the well-known control laws.                             |
+| [PCS.Control](#pcs.control)   | Provides the base controller definition and some of the well-known control laws.                             |
 | [PCS.Hardware](#pcs-hardware) | Provides classes for emulating physical interaction with real processes.                                     |
 | [PCS.Network](#pcs-network)   | Provides classes for establishing a networked communication between control loop components.                 |
 | [PCS.Process](#pcs-process)   | Provides the base process definition and some of the well-known industrial processes.                        |
