@@ -31,11 +31,11 @@ The API reference is organized by packages.
 | Package                       | Description                                                                                                  |
 |:----------------------------- |:------------------------------------------------------------------------------------------------------------ |
 | [PCS](#pcs)                   | Provides the core classes necessary to perform a process control simulation and the base system definition.  |
-| [PCS.Control](#pcs.control)   | Provides the base controller definition and some of the well-known control laws.                             |
-| [PCS.Hardware](#pcs-hardware) | Provides classes for emulating physical interaction with real processes.                                     |
-| [PCS.Network](#pcs-network)   | Provides classes for establishing a networked communication between control loop components.                 |
-| [PCS.Process](#pcs-process)   | Provides the base process definition and some of the well-known industrial processes.                        |
-| [PCS.Utils](#pcs-utils)       | Provides static classes with useful reusable functions to simplify the simulation of the closed-loop system. |
+| [PCS.Control](#pcscontrol)   | Provides the base controller definition and some of the well-known control laws.                             |
+| [PCS.Hardware](#pcshardware) | Provides classes for emulating physical interaction with real processes.                                     |
+| [PCS.Network](#pcsnetwork)   | Provides classes for establishing a networked communication between control loop components.                 |
+| [PCS.Process](#pcsprocess)   | Provides the base process definition and some of the well-known industrial processes.                        |
+| [PCS.Utils](#pcsutils)       | Provides static classes with useful reusable functions to simplify the simulation of the closed-loop system. |
 
 ### <span id="pcs"/>PCS
 Provides the core classes necessary to perform a process control simulation and the base system definition.
@@ -75,7 +75,7 @@ Provides the base controller definition and some of the well-known control laws.
 |:---------- |:----------- |
 | [Controller](#controller) | An abstract class which provides a general definition for controllers. |
 
-##### Class Controller ([PCS.Control](#pcs-control))
+##### Class Controller ([PCS.Control](#pcscontrol))
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
 	- [PCS.System](#system)
@@ -99,7 +99,7 @@ Provides classes for emulating physical interaction with real processes.
 | [Device](#device) | An abstract class which provides a general definition for an electronic device. |
 | [Sensor](#sensor) | This class represents a physical sensor that is continuously connected to some process state or output, or to a disturbance. |
 
-##### <span id="actuator"/>Class Actuator ([PCS.Hardware](#pcs-hardware))
+##### <span id="actuator"/>Class Actuator ([PCS.Hardware](#pcshardware))
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
 	- [PCS.Hardware.Device](#device)
@@ -124,7 +124,7 @@ This class represents a physical actuator that is continuously connected to some
 |:------ |:----------- |
 | output = write(input) | Uses this actuator to write a (possibly constrained) control signal. |
 
-##### <span id="device"/>Class Device ([PCS.Hardware](#pcs-hardware))
+##### <span id="device"/>Class Device ([PCS.Hardware](#pcshardware))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
@@ -135,7 +135,7 @@ An abstract class which provides a general definition for an electronic device.
 |:-------- |:-------- |:----------- |
 | None | device_id | The identifier of the physical device. |
 
-##### <span id="sensor"/>Class Sensor ([PCS.Hardware](#pcs-hardware))
+##### <span id="sensor"/>Class Sensor ([PCS.Hardware](#pcshardware))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [PCS.Hardware.Device](#device)
@@ -169,7 +169,7 @@ Provides classes for establishing a networked communication between control loop
 | [Link](#link) | An abstract class which provides a general definition for network links. |
 | [SensorLink](#sensor-link) | The *SensorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the process and the controller. |
 
-##### <span id="actuator-link"/>Class ActuatorLink ([PCS.Network](#pcs-network))
+##### <span id="actuator-link"/>Class ActuatorLink ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [Link](#link)
@@ -191,7 +191,7 @@ The *ActuatorLink* class provides a general implementation for continuous-time, 
 |:-------- |:------ |:----------- |
 | None | u_sent = send(t, u) | Transmits some control signals through this link. |
 
-##### <span id="link"/>Class Link ([PCS.Network](#pcs-network))
+##### <span id="link"/>Class Link ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
@@ -210,7 +210,7 @@ An abstract class which provides a general definition for network links.
 |:-------- |:------ |:----------- |
 | None | [varargout](https://es.mathworks.com/help/matlab/ref/varargout.html) = send([varargin](https://es.mathworks.com/help/matlab/ref/varargin.html)) | Transmits some signals through this link. |
 
-##### <span id="sensor-link"/>Class SensorLink ([PCS.Network](#pcs-network))
+##### <span id="sensor-link"/>Class SensorLink ([PCS.Network](#pcsnetwork))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [Link](#link)
@@ -242,7 +242,7 @@ Provides the base process definition and some of the well-known industrial proce
 |:---------- |:----------- |
 | [Process](#process) | An abstract class which provides a general definition for processes. |
 
-##### <span id="process"/>Class Process ([PCS.Process](#pcs-process))
+##### <span id="process"/>Class Process ([PCS.Process](#pcsprocess))
 
 - [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 	- [System](#system)
@@ -269,7 +269,7 @@ Provides static classes with useful reusable functions to simplify the simulatio
 |:---------- |:----------- |
 | Utils | Class for static utilities. |
 
-##### <span id="utils"/>Class Utils ([PCS.Utils](#pcs-utils)]
+##### <span id="utils"/>Class Utils ([PCS.Utils](#pcsutils)]
 
 ###### Methods Summary
 | Modifier | Method | Description |
