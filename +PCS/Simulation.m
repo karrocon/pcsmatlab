@@ -651,8 +651,6 @@ classdef Simulation < handle
                 t_vector = [];
             end
             
-            tic;
-            
             self.init_simulation();
             
             while self.t_sim(end) < self.tend
@@ -674,11 +672,13 @@ classdef Simulation < handle
                 
                 % Handle events
                 if ~isempty(ie)
-                    %for i=ie'
-                    %    self.te_sim{i} = [self.te_sim{i} te(1)];
-                    %end
+                    status = self.on_event(ie,te);
                     
-                    self.on_event(ie,te);
+                    if status == 1
+                        error ('Error: Zeno effect could not be resolved.');
+                    elseif status == -1
+                        error('Error: Unhandled zeno exception. Define on_zeno_enter function to handle zeno effect.');
+                    end
                     
                     if self.adaptive_initial_step
                         self.initial_step = self.t_sim(end) - self.t_sim(end-self.refine);
@@ -690,8 +690,6 @@ classdef Simulation < handle
                     end
                 end
             end
-            
-            toc;
 
             data = self.end_simulation(t_vector);
             
@@ -765,7 +763,7 @@ classdef Simulation < handle
             
             u_actuator_fun = self.create_signal_fun(self.t_sim,self.u_actuator_sim,PCS.Utils.InterpolationMethod.ZOH);
             
-            y = self.process.output(t,xp_fun,u_actuator_fun,d_fun);
+            y = self.process.outputs(t,xp_fun,u_actuator_fun,d_fun);
             
             y_measured = y;
             for i = 1:length(y)
@@ -823,7 +821,7 @@ classdef Simulation < handle
             y_sent_fun = self.create_signal_fun([self.t_sim t],[self.y_sent_sim y_sent],PCS.Utils.InterpolationMethod.ZOH);
             d_sent_fun = self.create_signal_fun([self.t_sim t],[self.d_sent_sim d_sent],PCS.Utils.InterpolationMethod.ZOH);
             
-            u = self.controller.output(t,xc_fun,xp_sent_fun,y_sent_fun,d_sent_fun,r_fun);
+            u = self.controller.outputs(t,xc_fun,xp_sent_fun,y_sent_fun,d_sent_fun,r_fun);
             
             u_fun = self.create_signal_fun([self.t_sim t],[self.u_sim u],PCS.Utils.InterpolationMethod.Linear);
             
@@ -910,7 +908,9 @@ classdef Simulation < handle
             direction = [-1; -ones(length(ce_conditions),1); -ones(length(dt_conditions),1); -ones(length(de_conditions),1)];
         end
         
-        function on_event(self,ie,te,accumulated_events)
+        function status = on_event(self,ie,te,accumulated_events)
+            status = 0;
+            
             for i=ie'
                 self.te_sim{i} = [self.te_sim{i} te(1)];
             end
@@ -930,7 +930,8 @@ classdef Simulation < handle
             if any(accumulated_events > self.zeno_max_deep)
                 % Zeno behaviour detected
                 if isempty (self.on_zeno_enter)
-                    error('Error: Unhandled zeno exception. Define on_zeno_enter function to handle zeno effect.');
+                    status = -1;
+                    return;
                 end
                 
                 self.on_zeno_enter ();
@@ -1103,9 +1104,10 @@ classdef Simulation < handle
                 end
             else
                 if zeno
-                    error ('Error: Zeno effect could not be resolved.');
+                    status = 1;
+                    return;
                 end
-                self.on_event(ie,te,accumulated_events);
+                status = self.on_event(ie,te,accumulated_events);
             end
         end
         
@@ -1222,9 +1224,17 @@ classdef Simulation < handle
                     ie = find(self.events(self.t_sim(end),[self.xp_sim(:,end); self.xc_sim(:,end)]) <= 0);
                     ie = ie(ie ~= 1);
                     if ~isempty(ie)
-                        disp('Event on initial step');
+                        if self.verbose
+                            disp('Event on initial step');
+                        end
                         
-                        self.on_event(ie,self.t_sim(end));
+                        status_zeno = self.on_event(ie,self.t_sim(end));
+                        
+                        if status_zeno == 1
+                            error ('Error: Zeno effect could not be resolved.');
+                        elseif status_zeno == -1
+                            error('Error: Unhandled zeno exception. Define on_zeno_enter function to handle zeno effect.');
+                        end
                         
                         status = 1;
                     end

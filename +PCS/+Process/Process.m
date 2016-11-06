@@ -8,9 +8,9 @@ classdef (Abstract) Process < PCS.System
         n_disturbances = 0
     end
     
-    methods
+    methods (Abstract)
         dxdt = derivatives(self,t,x,u,d);
         
-        y = output(self,t,x,u,d);
+        y = outputs(self,t,x,u,d);
     end   
 end
