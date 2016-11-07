@@ -106,9 +106,6 @@ classdef Simulation < handle
         adaptive_initial_step
         adaptive_max_step
         
-        % Initial mini step
-        initial_mini_step = 1e-6
-        
         % Function signals
         
         
@@ -575,48 +572,6 @@ classdef Simulation < handle
         
         function add_sensor_link(self,link)
             self.sensor_links{end+1} = link;
-        end
-        
-        function p = plot2(self,varargin)
-            if exist('Plot','file') == 2
-                vars_to_print = [];
-                
-                for i=1:length(varargin)
-                    switch varargin{i}(1)
-                        case 'x'
-                            vars_to_print(end+1:end+size(self.xp_sim,1),:) = self.xp_sim;
-                        case 'y'
-                            vars_to_print(end+1:end+size(self.y_sim,1),:) = self.y_sim;
-                        case 'u'
-                            vars_to_print(end+1:end+size(self.u_sim,1),:) = self.u_sim;
-                        case 'd'
-                            vars_to_print(end+1:end+size(self.d_sim,1),:) = self.d_sim;
-                        case 'r'
-                            vars_to_print(end+1:end+size(self.r_sim,1),:) = self.r_sim;
-                    end
-                end
-                
-                p = Plot(self.t_sim,vars_to_print);
-            else
-                %p = plot(self.t_sim,self.xp_sim);
-            end
-        end
-        
-        function p = plot(self)
-            if exist('Plot','file') == 2
-                p = Plot(self.t_sim,self.xp_sim);
-                
-                l = cell(self.process.n_states,1);
-                for i=1:self.process.n_states
-                    l{i} = sprintf('x%d(t)',i);
-                end
-                
-                p.Legend = l;
-                p.XLabel = {'t'};
-                p.YLabel = {'x'};
-            else
-                p = plot(self.t_sim,self.xp_sim);
-            end
         end
         
         function set_preloaded_disturbance(self,index,d,t,interp)
