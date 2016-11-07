@@ -46,11 +46,44 @@ Provides the core classes necessary to perform a process control simulation and 
 | [Simulation](#class-simulation-pcs) | The *Simulation* class contains the core functionality of the library that allows to perform process control simulations. |
 | [System](#class-system-pcs) | An abstract class which provides a common definition for processes and controllers.                                                 |
 
-##### Class Simulation (PCS)
+##### Class Simulation ([PCS](#pcs))
+- [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
+
 The *Simulation* class contains the core functionality of the library that allows to perform process control simulations.
 
-##### Class System (PCS)
-[handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
+###### Properties Summary
+| Modifier | Property  | Description |
+|:-------- |:--------- |:----------- |
+| None | actuators | Vector containing an actuator for each input of the process. |
+| None | actuator\_links | Vector containing the links of the network controller-process (C-P). |
+| None | d\_sensors | Vector containing a sensor for each disturbance affecting the process. |
+| None | event\_tol | Zero-crossing tolerance for event location. |
+| None | on\_zeno\_enter | Function handle to be called before a Zeno phenomenom occurs. |
+| None | on\_zeno\_exit | Function handle to be called after Zeno phenomenom is solved. |
+| None | sensor\_links | Vector containing the links of the network process-controller (P-C). |
+| None | solver | A function handle to the ODE solver. |
+| None | t0 | The initial time of the simulation. |
+| None | tend | The final time of the simulation. |
+| None | verbose | True if debug messages should be displayed at runtime. |
+| None | x0 | Initial states of the process. |
+| None | xc0 | Initial states of the controller. |
+| None | x\_sensors | Vector containing a sensor for each state of the process. |
+| None | y\_sensors | Vector containing a sensor for each output of the process. |
+| None | zeno\_max\_depth | Maximum times that the same event can be triggered in the same time instant before a Zeno effect is detected. |
+
+###### Constructors Summary
+| Constructor | Description |
+|:----------- |:----------- |
+| Simulation(process, controller) | Initializes a closed-loop simulation with given process and controller. |
+
+###### Methods Summary
+| Modifier | Method | Description |
+|:-------- |:------ |:----------- |
+| None     | data = run() | Executes the simulation in the time interval [t0, tend]. |
+| None     | data = run(t) | Executes the simulation in the time interval [t0, tend] and returns the result at prefixed time instants given by t. |
+
+##### Class System ([PCS](#pcs))
+- [handle](https://es.mathworks.com/help/matlab/ref/handle-class.html)
 
 An abstract class which provides a common definition for processes and controllers.
 
@@ -298,7 +331,7 @@ Provides static classes with useful reusable functions to simplify the simulatio
 | Static   | y = langrange_interpolation(X, Y, x) | Computes Lagrange interpolation. |
 | Static | classes = subclasses(class, folder, depth) | Gets MATLAB subclasses for a given class. |
 
-##### Enum InterpolationMethod ([PCS.Utils](#pcsutils))
+##### Enum InterpolationMethod ([PCS.Utils](#pcsutils)]
 The available modes of interpolation.
 
 ###### Constants Summary
