@@ -1,4 +1,4 @@
-# Process Control Simulations (PCS) for MATLAB®
+# Process Control Simulations (PCS) for MATLAB
 
 **PCS** is an open-source object-oriented library developed by Departamento de Informática y Automática at UNED, aiming to provide an easy-to-develop framework for process control simulations.
 
@@ -55,11 +55,11 @@ The *Simulation* class contains the core functionality of the library that allow
 An abstract class which provides a common definition for processes and controllers.
 
 ###### Properties Summary
-| Property  | Description |
-|:--------- |:----------- |
-| n_inputs  | The number of inputs of the system.  |
-| n_outputs | The number of outputs of the system. |
-| n_states  | The number of states of the system.  |
+| Modifier | Property  | Description |
+|:-------- |:--------- |:----------- |
+| None     | n_inputs  | The number of inputs of the system.  |
+| None     | n_outputs | The number of outputs of the system. |
+| None     | n_states  | The number of states of the system.  |
 
 ###### Methods Summary
 | Modifier | Method | Description |
@@ -120,9 +120,9 @@ This class represents a physical actuator that is continuously connected to some
 | Actuator()  | Creates an ideal actuator with no physical restrictions. |
 
 ###### Methods Summary
-| Method | Description |
-|:------ |:----------- |
-| output = write(input) | Uses this actuator to write a (possibly constrained) control signal. |
+| Modifier | Method | Description |
+|:-------- |:------ |:----------- |
+| None     | output = write(input) | Uses this actuator to write a (possibly constrained) control signal. |
 
 ##### Class Device ([PCS.Hardware](#pcshardware))
 
@@ -155,9 +155,9 @@ This class represents a physical sensor that is continuously connected to some p
 | Sensor()    | Creates an ideal sensor with no physical restrictions. |
 
 ###### Methods Summary
-| Method | Description |
-|:------ |:----------- |
-| output = read(input) | Uses this sensor to read a (possibly constrained) state, output or disturbance. |
+| Modifier | Method | Description |
+|:-------- |:------ |:----------- |
+| None     | output = read(input) | Uses this sensor to read a (possibly constrained) state, output or disturbance. |
 
 ### PCS.Network
 Provides classes for establishing a networked communication between control loop components.
@@ -168,6 +168,11 @@ Provides classes for establishing a networked communication between control loop
 | [ActuatorLink](#class-actuatorlink-pcsnetwork) | The *ActuatorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the controller and the process. |
 | [Link](#class-link-pcsnetwork) | An abstract class which provides a general definition for network links. |
 | [SensorLink](#class-sensorlink-pcsnetwork) | The *SensorLink* class provides a general implementation for continuous-time, discrete-time and event-time transmissions between the process and the controller. |
+
+#### Enum Summary
+| Enum  | Description |
+|:----- |:----------- |
+| [LinkType](#enum-link-pcsnetwork) | The available types of links for networked communication.|
 
 ##### Class ActuatorLink ([PCS.Network](#pcsnetwork))
 
@@ -234,6 +239,17 @@ The *SensorLink* class provides a general implementation for continuous-time, di
 |:-------- |:------ |:----------- |
 | None | [x\_sent, y\_sent, d\_sent] = send(t, x, y, d) | Transmits some disturbances, outputs and states through this link. |
 
+##### Enum LinkType ([PCS.Network](#pcsnetwork))
+The available types of links for networked communication.
+
+###### Constants Summary
+| Constant                 | Description |
+|:-----------------------  |:----------- |
+| ContinuousEventTriggered | Represents a continuous event-triggered link. | 
+| ContinuousTimeTriggered  | Represents a continuous link. |
+| PeriodicEventTriggered   | Represents a periodic event-triggered link. |
+| PeriodicTimeTriggered    | Represents a periodic time-triggered link. |
+
 ### PCS.Process
 Provides the base process definition and some of the well-known industrial processes.
 
@@ -252,7 +268,7 @@ An abstract class which provides a general definition for processes.
 ###### Properties Summary
 | Modifier | Property | Description |
 |:-------- |:-------- |:----------- |
-| None | n_disturbances | The number of disturbances of the process |
+| None | n_disturbances | The number of disturbances of the process. |
 
 ###### Method Summary
 
@@ -269,6 +285,11 @@ Provides static classes with useful reusable functions to simplify the simulatio
 |:---------- |:----------- |
 | [Utils](#class-utils-pcsutils) | Class for static utilities. |
 
+#### Enum Summary
+| Enum                | Description |
+|:------------------- |:----------- |
+| [InterpolationMethod](#enum-interpolationmethod-pcsutils) | The avaliable modes of interpolation. |
+
 ##### Class Utils ([PCS.Utils](#pcsutils)]
 
 ###### Methods Summary
@@ -276,3 +297,13 @@ Provides static classes with useful reusable functions to simplify the simulatio
 |:-------- |:------ |:----------- |
 | Static   | y = langrange_interpolation(X, Y, x) | Computes Lagrange interpolation. |
 | Static | classes = subclasses(class, folder, depth) | Gets MATLAB subclasses for a given class. |
+
+##### Enum InterpolationMethod ([PCS.Utils](#pcsutils))
+The available modes of interpolation.
+
+###### Constants Summary
+| Constant | Description |
+|:-------- |:----------- |
+| Lagrange | The Lagrange interpolation method. |
+| Linear | Linear (first-order hold) interpolation. |
+| ZOH | Zero-order hold interpolation. |
