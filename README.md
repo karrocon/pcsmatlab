@@ -65,18 +65,18 @@ classdef QuadrupleTank < PCS.Process.Process
 			self.n_states = 4;
 		end
 		
-		dxdt = derivatives(self, t, x, u, ~, ~)
+		function dxdt = derivatives(self, t, x, u, ~, ~)
 			dxdt = zeros(4, 1);
 			
 			xt = x(t);
 			
-			dxdt(1) = - self.a(1)/self.A(1)*sqrt(2*self.g*xt(1)) + self.a(3)/self.A(1)*sqrt(2*self.g*xt(3)) + self.gamma(1)*self.k(1)/self.A(1)*u(t,1);
-            dxdt(2) = - self.a(2)/self.A(2)*sqrt(2*self.g*xt(2)) + self.a(4)/self.A(2)*sqrt(2*self.g*xt(4)) + self.gamma(2)*self.k(2)/self.A(2)*u(t,2);
-            dxdt(3) = - self.a(3)/self.A(3)*sqrt(2*self.g*xt(3)) + (1-self.gamma(2))*self.k(2)/self.A(3)*u(t,2);
-            dxdt(4) = - self.a(4)/self.A(4)*sqrt(2*self.g*xt(4)) + (1-self.gamma(1))*self.k(1)/self.A(4)*u(t,1);
+			dxdt(1) = -self.a(1)/self.A(1)*sqrt(2*self.g*xt(1)) + self.a(3)/self.A(1)*sqrt(2*self.g*xt(3)) + self.gamma(1)*self.k(1)/self.A(1)*u(t,1);
+            dxdt(2) = -self.a(2)/self.A(2)*sqrt(2*self.g*xt(2)) + self.a(4)/self.A(2)*sqrt(2*self.g*xt(4)) + self.gamma(2)*self.k(2)/self.A(2)*u(t,2);
+            dxdt(3) = -self.a(3)/self.A(3)*sqrt(2*self.g*xt(3)) + (1-self.gamma(2))*self.k(2)/self.A(3)*u(t,2);
+            dxdt(4) = -self.a(4)/self.A(4)*sqrt(2*self.g*xt(4)) + (1-self.gamma(1))*self.k(1)/self.A(4)*u(t,1);
 		end
 		
-		y = outputs(self, t, x, u, ~, ~)
+		function y = outputs(self, t, x, u, ~, ~)
 			y = x(t, [1 2]);
 		end
 	end
