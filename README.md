@@ -30,6 +30,8 @@ Download the zip archive from [PCS for MATLAB homepage](https://github.com/crcun
 Tutorials are given in ascending difficulty order.
 
 ### Development of a Quadruple-Tank Process
+The following class represents the quadruple-tank process described [here](http://ieeexplore.ieee.org/document/845876/).
+
 ~~~matlab
 classdef QuadrupleTank < PCS.Process.Process
 	properties
@@ -88,6 +90,8 @@ end
 ~~~
 
 ### Development of a PI Controller
+The following class represents a general PI controller.
+
 ~~~matlab
 classdef PI < PCS.Control.Controller
 	properties
@@ -126,7 +130,9 @@ classdef PI < PCS.Control.Controller
 end
 ~~~
 
-### Executing a Simulation
+### Executing a Simulation
+The following script is used to perform the [PI control](#development-of-a-pi-controller) of the [quadruple-tank process](#development-of-a-quadruple-tank-process).
+
 ~~~matlab
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PI control of a quadruple-tank process %
@@ -481,4 +487,4 @@ The available modes of interpolation.
 |:-------- |:----------- |
 | Lagrange | The Lagrange interpolation method. |
 | Linear | Linear (first-order hold) interpolation. |
-| ZOH | Zero-order hold interpolation. |
+| ZOH | Zero-order hold interpolation. |
