@@ -12,7 +12,11 @@
 ## Introduction
 This manual describes the use of Matlab-based simulation library PCS, which facilitates development of process control loops in networked and/or event-based environments.
 
-Several tutorial examples are provided.
+Several tutorial examples are provided to show how to prepare reusable controllers and processes and perform continuous, periodic or event-triggered simulations.
+
+This manual also includes a detailed API reference of the library with every package and its contents.
+
+For questions and bug reports, please direct them to the [issues page of the library](https://github.com/crcuned/pcsmatlab/issues).
 
 ## Getting Started
 
