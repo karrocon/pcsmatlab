@@ -50,7 +50,7 @@ classdef QuadrupleTank < PCS.Process.Process
 			if ndims(A) ~= 2 || length(A) ~= 4
 				error('Cross-sections of the tanks must be a vector of length 4.');
 			end
-			if ndims(g) ~= 1
+			if ~isscalar(g)
 				error('Acceleration of gravity must be a scalar.');
 			end
 			if ndims(gamma) ~= 2 || length(gamma) ~= 2
@@ -471,7 +471,7 @@ Provides static classes with useful reusable functions to simplify the simulatio
 |:------------------- |:----------- |
 | [InterpolationMethod](#enum-interpolationmethod-pcsutils) | The avaliable modes of interpolation. |
 
-##### Class Utils ([PCS.Utils](#pcsutils)]
+##### Class Utils ([PCS.Utils](#pcsutils))
 
 ###### Methods Summary
 | Modifier | Method | Description |
