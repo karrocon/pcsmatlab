@@ -9,8 +9,8 @@ classdef (Abstract) System < handle
     
     methods (Abstract)
         % Abstract state derivatives function
-        dxdt = derivatives(self,t,x,varargin);
+        vargout = derivatives(self,t,varargin);
         % Abstract output function
-        y = output(self,t,x,varargin);
+        vargout = outputs(self,t,varargin);
     end   
 end
