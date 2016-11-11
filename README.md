@@ -479,7 +479,7 @@ Provides static classes with useful reusable functions to simplify the simulatio
 | Static   | y = langrange_interpolation(X, Y, x) | Computes Lagrange interpolation. |
 | Static | classes = subclasses(class, folder, depth) | Gets MATLAB subclasses for a given class. |
 
-##### Enum InterpolationMethod ([PCS.Utils](#pcsutils)]
+##### Enum InterpolationMethod ([PCS.Utils](#pcsutils))
 The available modes of interpolation.
 
 ###### Constants Summary
