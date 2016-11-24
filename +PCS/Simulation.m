@@ -64,14 +64,14 @@ classdef Simulation < handle
     
     properties (Dependent = true)
         % Simulation options
-        abs_tol = 1e-6
+        abs_tol = 1e-9
         bdf = 'off'
         initial_step = 0
-        max_order = 5
+        max_order = 10
         max_step = 0
         non_negative = 0
         refine = 1
-        rel_tol = 1e-3
+        rel_tol = 1e-6
     end
     
     properties
@@ -1176,7 +1176,11 @@ classdef Simulation < handle
         function status = outputs(self,t,x,flag)
             switch flag
                 case 'init'
-                    ie = find(self.events(self.t_sim(end),[self.xp_sim(:,end); self.xc_sim(:,end)]) <= 0);
+                    if self.controller.n_states == 0
+                        ie = find(self.events(self.t_sim(end),self.xp_sim(:,end)) <= 0);
+                    else
+                        ie = find(self.events(self.t_sim(end),[self.xp_sim(:,end); self.xc_sim(:,end)]) <= 0);
+                    end
                     ie = ie(ie ~= 1);
                     if ~isempty(ie)
                         if self.verbose
