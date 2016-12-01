@@ -1176,7 +1176,11 @@ classdef Simulation < handle
         function status = outputs(self,t,x,flag)
             switch flag
                 case 'init'
-                    ie = find(self.events(self.t_sim(end),[self.xp_sim(:,end); self.xc_sim(:,end)]) <= 0);
+                    if self.controller.n_states == 0
+                        ie = find(self.events(self.t_sim(end),self.xp_sim(:,end)) <= 0);
+                    else
+                        ie = find(self.events(self.t_sim(end),[self.xp_sim(:,end); self.xc_sim(:,end)]) <= 0);
+                    end
                     ie = ie(ie ~= 1);
                     if ~isempty(ie)
                         if self.verbose
