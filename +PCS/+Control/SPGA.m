@@ -1,4 +1,4 @@
-classdef SPGA2 < PCS.Control.Controller
+classdef SPGA < PCS.Control.Controller
     properties
         K    % Feedback gain matrix
         xsym % Symbolic state vector
@@ -14,7 +14,7 @@ classdef SPGA2 < PCS.Control.Controller
     end
     
     methods
-        function self = SPGA2(K,xsym,hsym,gsym)
+        function self = SPGA(K,xsym,hsym,gsym)
             for i=1:1:length(xsym)
                 if xsym(i)-conj(xsym(i)) ~= 0
                     error('State must be real.');
