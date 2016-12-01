@@ -64,14 +64,14 @@ classdef Simulation < handle
     
     properties (Dependent = true)
         % Simulation options
-        abs_tol = 1e-9
+        abs_tol = 1e-6
         bdf = 'off'
         initial_step = 0
-        max_order = 10
+        max_order = 5
         max_step = 0
         non_negative = 0
         refine = 1
-        rel_tol = 1e-6
+        rel_tol = 1e-3
     end
     
     properties

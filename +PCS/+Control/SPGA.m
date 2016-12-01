@@ -49,16 +49,7 @@ classdef SPGA < PCS.Control.Controller
 
         function u = outputs(self, t, ~, x, ~, ~, ~)
             xt = x(t);
-%             for i=1:1:length(self.xsym)
-%                 self.xsym(i)=xt(i)
-%             end
-            %x1=xt(1); x2=xt(2); x3=xt(3); x4=xt(4);
             u=self.usym(xt);
-            %u=self.usym;
-            %The current values of the state are replaced in the symbolic u
-            %for i=1:1:length(self.xsym)
-            %   u = subs(u,self.xsym(i),xt(i));
-            %end
         end
     end
 end
