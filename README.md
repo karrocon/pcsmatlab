@@ -148,8 +148,8 @@ k = [3.33 3.35];
 process = QuadrupleTank(a, A, g, gamma, k);
 
 % PI controller
-K = [0.3816 0.5058];
-Ti = [62.9557 91.3960];
+K = [0.3816; 0.5058];
+Ti = [62.9557; 91.3960];
 
 controller = PI(K, Ti);
 
@@ -157,14 +157,14 @@ controller = PI(K, Ti);
 simulation = PCS.Simulation(controller, process);
 
 % Define initial states and time interval
-simulation.x0 = [31.4347; 33.4446];
-simulation.xc0 = [12.4; 12.7; 1.5919; 1.4551];
+simulation.xc0 = [31.4347; 33.4446];
+simulation.x0 = [12.4; 12.7; 1.5919; 1.4551];
 simulation.t0 = 0;
 simulation.tend = 500;
 
 % Define set-point conditions
-simulation.set_reference(1, 15);
-simulation.set_reference(2, 12.7);
+simulation.set_preloaded_reference(1, 15);
+simulation.set_preloaded_reference(2, 12.7);
 
 % Execute simulation
 data = simulation.run();
