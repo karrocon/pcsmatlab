@@ -752,7 +752,12 @@ classdef Simulation < handle
             end
             
             if self.process.n_disturbances > 0
-                d_sent = self.d_sent_sim(:,end);
+                if isempty(self.d_sent_sim)
+                    d_sent = d_measured;
+                    self.d_sent_sim = d_sent;
+                else
+                    d_sent = self.d_sent_sim(:,end);
+                end
             else
                 d_sent = 0;
             end
@@ -1001,7 +1006,7 @@ classdef Simulation < handle
                     d_measured_fun = self.create_signal_fun(self.t_sim,self.d_measured_sim,PCS.Utils.InterpolationMethod.ZOH);
                     u_fun = self.create_signal_fun(self.t_sim,self.u_sim,PCS.Utils.InterpolationMethod.Linear);
                     
-                    if self.sensor_links{sensor_index}.triggering_condition(self.t_sim(end),self.sensor_links{sensor_index}.last_triggering_time,0,x_measured_fun,y_measured_fun,d_measured_fun,0,u_fun) < 0
+                    if self.sensor_links{sensor_index}.triggering_condition(self.t_sim(end),self.sensor_links{sensor_index}.last_triggering_time,0,xp_measured_fun,y_measured_fun,d_measured_fun,0,u_fun) < 0
                         % DE sensor event
                         if self.verbose
                             disp('DiscreteEventTriggered Sensor link');
